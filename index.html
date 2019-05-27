@@ -103,7 +103,7 @@ function calculateHours() {
 		var hour_diff = end_hour - start_hour;
 		var minute_diff = end_minute - start_minute;
 		if (minute_diff < 0) {
-			minute_diff = end_minute + minute_diff;
+			minute_diff = 60 - start_minute + end_minute;
 			hour_diff--;
 		}
 		var total_shift_hours = hour_diff + minute_diff/60;
@@ -119,7 +119,7 @@ function calculateHours() {
 		var hourb_diff = endb_hour - startb_hour;
 		var minuteb_diff = endb_minute - startb_minute;
 		if (minuteb_diff < 0) {
-			minuteb_diff = endb_minute + minuteb_diff;
+			minuteb_diff = 60 - startb_minute + endb_minute;
 			hourb_diff--;
 		}
 		var totalb_hours = hourb_diff + minuteb_diff/60;
@@ -129,7 +129,7 @@ function calculateHours() {
 		var hour_netdiff = hour_diff - hourb_diff;
 		var minute_netdiff = minute_diff - minuteb_diff;
 		if (minute_netdiff < 0) {
-			minute_netdiff = minute_diff + minute_netdiff;
+			minute_netdiff = 60 - minuteb_diff + minute_diff;
 			hour_netdiff--;
 		}
 		var total_hours = total_shift_hours - totalb_hours;
