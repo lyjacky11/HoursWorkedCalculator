@@ -73,6 +73,7 @@
 	<br></br>
 	<h3> Results </h3>
 	<p id="hours_worked">Hours Worked: 0h 0m | 0.00 hours</p>
+	<p id="total_breaks">Total Breaks: 0h 0m | 0.00 hours</p>
 	<p id="gross_pay">Gross Pay: $0.00</p>
 	
 	<br>
@@ -89,6 +90,7 @@ function calculateHours() {
 	let end_break = document.getElementById("end_break").value;
 	let end_shift = document.getElementById("end_shift").value;
 	let hours_worked = document.getElementById("hours_worked");
+	let total_breaks = document.getElementById("total_breaks");
 	let gross_pay = document.getElementById("gross_pay");
 	
 	if (start_shift != "" && end_shift != "") {
@@ -100,14 +102,9 @@ function calculateHours() {
 		var end_minute = end_shift.split(":")[1];
 		
 		// Calculate shift hours
-		var hour_diff = end_hour - start_hour;
-		var minute_diff = end_minute - start_minute;
-		if (minute_diff < 0) {
-			minute_diff = 60 - start_minute + end_minute;
-			hour_diff--;
-		}
-		var total_shift_hours = hour_diff + minute_diff/60;
-		total_shift_hours = total_shift_hours.toFixed(2);
+		var net_start = start_hour + start_minute/60;
+		var net_end = end_hour + end_minute/60;
+		var total_shift_hours = net_end - net_start;
 		
 		// Break Times
 		var startb_hour = start_break.split(":")[0];
@@ -116,27 +113,26 @@ function calculateHours() {
 		var endb_minute = end_break.split(":")[1];
 		
 		// Calculate break hours
-		var hourb_diff = endb_hour - startb_hour;
-		var minuteb_diff = endb_minute - startb_minute;
-		if (minuteb_diff < 0) {
-			minuteb_diff = 60 - startb_minute + endb_minute;
-			hourb_diff--;
-		}
-		var totalb_hours = hourb_diff + minuteb_diff/60;
-		totalb_hours = totalb_hours.toFixed(2);
+		var netb_start = startb_hour + startb_minute/60;
+		var netb_end = endb_hour + endb_minute/60;
+		var totalb_hours = netb_end - netb_start;
 		
 		// Calculate total hours
-		var hour_netdiff = hour_diff - hourb_diff;
-		var minute_netdiff = minute_diff - minuteb_diff;
-		if (minute_netdiff < 0) {
-			minute_netdiff = 60 - minuteb_diff + minute_diff;
-			hour_netdiff--;
-		}
 		var total_hours = total_shift_hours - totalb_hours;
 		var total_amount = pay_rate * total_hours;
+		
+		var hour_netdiff = Math.floor(total_hours);
+		var minute_netdiff = Math.floor((total_hours % 1) * 60);
+		
+		var hour_bdiff = Math.floor(totalb_hours);
+		var minute_bdiff = Math.floor((totalb_hours % 1) * 60);
+		
+		totalb_hours = totalb_hours.toFixed(2);
+		total_hours = total_hours.toFixed(2);
 		total_amount = total_amount.toFixed(2);
 		
 		hours_worked.innerHTML = "Hours Worked: " + hour_netdiff + "h " + minute_netdiff + "m | " + total_hours + " hours";
+		total_breaks.innerHTML = "Total Breaks: " + hour_bdiff + "h " + minute_bdiff + "m | " + totalb_hours + " hours";;
 		gross_pay.innerHTML = "Gross Pay: $" + total_amount;
 	}
 	return false;
