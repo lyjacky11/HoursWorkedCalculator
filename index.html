@@ -102,6 +102,10 @@ function calculateHours() {
 		// Calculate shift hours
 		var hour_diff = end_hour - start_hour;
 		var minute_diff = end_minute - start_minute;
+		if (minute_diff < 0) {
+			minute_diff = end_minute + minute_diff;
+			hour_diff--;
+		}
 		var total_shift_hours = hour_diff + minute_diff/60;
 		total_shift_hours = total_shift_hours.toFixed(2);
 		
@@ -114,12 +118,20 @@ function calculateHours() {
 		// Calculate break hours
 		var hourb_diff = endb_hour - startb_hour;
 		var minuteb_diff = endb_minute - startb_minute;
+		if (minuteb_diff < 0) {
+			minuteb_diff = endb_minute + minuteb_diff;
+			hourb_diff--;
+		}
 		var totalb_hours = hourb_diff + minuteb_diff/60;
 		totalb_hours = totalb_hours.toFixed(2);
 		
 		// Calculate total hours
 		var hour_netdiff = hour_diff - hourb_diff;
 		var minute_netdiff = minute_diff - minuteb_diff;
+		if (minute_netdiff < 0) {
+			minute_netdiff = minute_diff + minute_netdiff;
+			hour_netdiff--;
+		}
 		var total_hours = total_shift_hours - totalb_hours;
 		var total_amount = pay_rate * total_hours;
 		total_amount = total_amount.toFixed(2);
