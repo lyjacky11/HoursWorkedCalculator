@@ -28,7 +28,7 @@
 <body>
 	<h2>Hours Worked Calculator</h2>
 	
-	<form>
+	<form id="shift_times">
 	<h3> Settings </h3>
 	Pay Rate ($): &nbsp;&nbsp;&nbsp;<input type="number" id="pay_rate" value="14.00" min="14.00" max="100.00" step="0.01" />
 	<br></br>
@@ -37,17 +37,18 @@
 	<div id="breaks">
 		<h4> Breaks </h4>
 		<div id ="break1">
-		Start Break: &nbsp;&nbsp;&nbsp;<input type="time" id="start_break" value="12:00" list="times_list"><br></br>
-		End Break: &nbsp;&nbsp;&nbsp;&nbsp;<input type="time" id="end_break" value="13:00" list="times_list"><br>
+		Start Break: &nbsp;&nbsp;&nbsp;<input type="time" id="start_break" list="times_list"><br></br>
+		End Break: &nbsp;&nbsp;&nbsp;&nbsp;<input type="time" id="end_break" list="times_list"><br>
 		<br>
 		</div>
 	</div>
-	<!--<button class="button" onClick="addBreak(); return false;">Add Break</button>-->
-	<br>
-	End Shift: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="time" id="end_shift" value="18:00" list="times_list"><br>
+	<button id="removeButton" class="button" onClick="removeBreak(); return false;">Remove Break</button>
+	<button id="addButton" class="button" onClick="addBreak(); return false;">Add Break</button>
+	<br></br>
+	End Shift: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="time" id="end_shift" value="19:00" list="times_list"><br>
 	<br></br>
 	<button class="button" onclick="return calculateHours()">Calculate</button>
-	<button class="button" onClick="location.reload()">Clear</button>
+	<button class="button" onClick="clearForm()">Clear</button>
 	</form>
 	
 	<datalist id="times_list">
@@ -102,20 +103,23 @@ function calculateHours() {
 		var end_minute = end_shift.split(":")[1];
 		
 		// Calculate shift hours
-		var net_start = start_hour + start_minute/60;
-		var net_end = end_hour + end_minute/60;
+		var net_start = Number(start_hour) + start_minute/60;
+		var net_end = Number(end_hour) + end_minute/60;
 		var total_shift_hours = net_end - net_start;
 		
-		// Break Times
-		var startb_hour = start_break.split(":")[0];
-		var startb_minute = start_break.split(":")[1];
-		var endb_hour = end_break.split(":")[0];
-		var endb_minute = end_break.split(":")[1];
-		
-		// Calculate break hours
-		var netb_start = startb_hour + startb_minute/60;
-		var netb_end = endb_hour + endb_minute/60;
-		var totalb_hours = netb_end - netb_start;
+		if (start_break != "" && end_break != "") {
+			// Break Times
+			var startb_hour = start_break.split(":")[0];
+			var startb_minute = start_break.split(":")[1];
+			var endb_hour = end_break.split(":")[0];
+			var endb_minute = end_break.split(":")[1];
+			
+			// Calculate break hours
+			var netb_start = Number(startb_hour) + startb_minute/60;
+			var netb_end = Number(endb_hour) + endb_minute/60;
+			var totalb_hours = netb_end - netb_start;
+		}
+		else {	var totalb_hours = 0;	}
 		
 		// Calculate total hours
 		var total_hours = total_shift_hours - totalb_hours;
@@ -142,11 +146,27 @@ function addBreak() {
 	let breaks = document.getElementById("breaks");
 	var currentID = "break" + counter;
 	let break_num = document.getElementById(currentID);
-	clone = break1.cloneNode(true);
+	let removeButton = document.getElementById("removeButton");
+	clone = break_num.cloneNode(true);
 	counter++;
 	var newID = "break" + counter;
 	clone.id = newID;
 	breaks.appendChild(clone);
+	//removeButton.style.display == block;
+}
+
+function removeBreak() {
+	if (counter > 1)
+	{
+		var currentID = "break" + counter;
+		let break_num = document.getElementById(currentID);
+		break_num.remove();
+		counter--;
+	}
+}
+
+function clearForm() {
+	document.getElementById("shift_times").reset();
 }
 </script>
 
