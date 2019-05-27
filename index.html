@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hours Worked Calculator</title>
+	<meta name="author" content="Jacky Ly">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+</head>
+<style>
+	html, body{
+	font-family: Montserrat;
+	font-size:16px;
+	text-align: center;
+	scroll-behavior: smooth;
+	}
+	
+	.button {
+		border-radius: 8px;
+		background-color: #555555;
+		color: white;
+		font-family: Montserrat;
+		font-size: 14px;
+		text-align: center;
+		padding: 10px 20px;
+		cursor: pointer;
+	}
+</style>
+<body>
+	<h2>Hours Worked Calculator</h2>
+	
+	<form>
+	<h3> Settings </h3>
+	Pay Rate ($): &nbsp;&nbsp;&nbsp;<input type="number" id="pay_rate" value="14.00" min="14.00" max="100.00" step="0.01" />
+	<br></br>
+	<h3> Shift Times </h3>
+	Start Shift: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="time" id="start_shift" value="07:00" list="times_list"><br>
+	<div id="breaks">
+		<h4> Breaks </h4>
+		<div id ="break1">
+		Start Break: &nbsp;&nbsp;&nbsp;<input type="time" id="start_break" value="12:00" list="times_list"><br></br>
+		End Break: &nbsp;&nbsp;&nbsp;&nbsp;<input type="time" id="end_break" value="13:00" list="times_list"><br>
+		<br>
+		</div>
+	</div>
+	<!--<button class="button" onClick="addBreak(); return false;">Add Break</button>-->
+	<br>
+	End Shift: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="time" id="end_shift" value="18:00" list="times_list"><br>
+	<br></br>
+	<button class="button" onclick="return calculateHours()">Calculate</button>
+	<button class="button" onClick="location.reload()">Clear</button>
+	</form>
+	
+	<datalist id="times_list">
+	<option value="07:00">
+	<option value="08:00">
+	<option value="09:00">
+	<option value="10:00">
+	<option value="11:00">
+	<option value="12:00">
+	<option value="13:00">
+	<option value="14:00">
+	<option value="15:00">
+	<option value="16:00">
+	<option value="17:00">
+	<option value="18:00">
+	<option value="19:00">
+	<option value="20:00">
+	<option value="11:00">
+	<option value="22:00">
+	<option value="23:00">
+	</datalist>
+	
+	<br></br>
+	<h3> Results </h3>
+	<p id="hours_worked">Hours Worked: 0h 0m | 0.00 hours</p>
+	<p id="gross_pay">Gross Pay: $0.00</p>
+	
+	<br>
+	<h5>Applet written by Jacky Ly.<br><a href="https://github.com/lyjacky11">GitHub</a> | <a href="https://lyjacky11.me/">https://lyjacky11.me/</a></h5>
+</body>
+
+<script type="text/javascript">
+var counter = 1;
+function calculateHours() {
+	let break_id = "break" + counter;
+	let pay_rate = document.getElementById("pay_rate").value;
+	let start_shift = document.getElementById("start_shift").value;
+	let start_break = document.getElementById("start_break").value;
+	let end_break = document.getElementById("end_break").value;
+	let end_shift = document.getElementById("end_shift").value;
+	let hours_worked = document.getElementById("hours_worked");
+	let gross_pay = document.getElementById("gross_pay");
+	
+	if (start_shift != "" && end_shift != "") {
+		
+		// Shift Times
+		var start_hour = start_shift.split(":")[0];
+		var start_minute = start_shift.split(":")[1];
+		var end_hour = end_shift.split(":")[0];
+		var end_minute = end_shift.split(":")[1];
+		
+		// Calculate shift hours
+		var hour_diff = end_hour - start_hour;
+		var minute_diff = end_minute - start_minute;
+		var total_shift_hours = hour_diff + minute_diff/60;
+		total_shift_hours = total_shift_hours.toFixed(2);
+		
+		// Break Times
+		var startb_hour = start_break.split(":")[0];
+		var startb_minute = start_break.split(":")[1];
+		var endb_hour = end_break.split(":")[0];
+		var endb_minute = end_break.split(":")[1];
+		
+		// Calculate break hours
+		var hourb_diff = endb_hour - startb_hour;
+		var minuteb_diff = endb_minute - startb_minute;
+		var totalb_hours = hourb_diff + minuteb_diff/60;
+		totalb_hours = totalb_hours.toFixed(2);
+		
+		// Calculate total hours
+		var hour_netdiff = hour_diff - hourb_diff;
+		var minute_netdiff = minute_diff - minuteb_diff;
+		var total_hours = total_shift_hours - totalb_hours;
+		var total_amount = pay_rate * total_hours;
+		total_amount = total_amount.toFixed(2);
+		
+		hours_worked.innerHTML = "Hours Worked: " + hour_netdiff + "h " + minute_netdiff + "m | " + total_hours + " hours";
+		gross_pay.innerHTML = "Gross Pay: $" + total_amount;
+	}
+	return false;
+}
+
+function addBreak() {
+	let breaks = document.getElementById("breaks");
+	var currentID = "break" + counter;
+	let break_num = document.getElementById(currentID);
+	clone = break1.cloneNode(true);
+	counter++;
+	var newID = "break" + counter;
+	clone.id = newID;
+	breaks.appendChild(clone);
+}
+</script>
+
+</html>
