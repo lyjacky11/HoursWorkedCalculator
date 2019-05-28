@@ -17,12 +17,13 @@
 	
 	.button {
 		border-radius: 8px;
-		background-color: #555555;
+		border: none;
+		background-color: #56A5E1;
 		color: white;
 		font-family: Montserrat;
-		font-size: 14px;
+		font-size: 13px;
 		text-align: center;
-		padding: 10px 20px;
+		padding: 10px 15px;
 		cursor: pointer;
 	}
 </style>
@@ -31,7 +32,7 @@
 	
 	<form id="shift_times" onsubmit="return false">
 	<h3> Settings </h3>
-	Pay Rate ($): &nbsp;&nbsp;&nbsp;<input type="number" id="pay_rate" value="14.00" min="14.00" max="100.00" step="0.01" />
+	Pay Rate ($): &nbsp;&nbsp;&nbsp;<input type="number" id="pay_rate" value="14.00" min="10.00" max="100.00" step="0.01" />
 	<br></br>
 	<h3> Shift Times </h3>
 	Start Shift: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="time" id="start_shift" value="07:00" list="times_list"><br>
@@ -43,13 +44,13 @@
 		<br>
 		</div>
 	</div>
-	<button id="removeButton" class="button" onClick="removeBreak()">Remove Break</button>
+	<button id="removeButton" class="button" onClick="removeBreak()">Remove Break</button> &nbsp;
 	<button id="addButton" class="button" onClick="addBreak()">Add Break</button>
 	<br></br>
 	<br>
 	End Shift: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="time" id="end_shift" value="19:00" list="times_list"><br>
 	<br></br>
-	<button class="button" onclick="calculateHours()">Calculate</button>
+	<button class="button" onclick="calculateHours()">Calculate</button> &nbsp;
 	<button class="button" onClick="clearForm()">Clear</button>
 	</form>
 	
