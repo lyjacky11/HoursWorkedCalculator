@@ -204,8 +204,12 @@ function clearForm() {
 	let hours_worked = document.getElementById("hours_worked");
 	let total_breaks = document.getElementById("total_breaks");
 	let gross_pay = document.getElementById("gross_pay");
+	let shift_times = document.getElementById("shift_times");
 	
-	document.getElementById("shift_times").reset();
+	shift_times.reset();
+	while (counter != 1) {
+		removeBreak();
+	}
 	hours_worked.innerHTML = "Hours Worked: 0h 0m | 0.00 hours";
 	total_breaks.innerHTML = "Total Breaks: 0h 0m | 0.00 hours";
 	gross_pay.innerHTML = "Gross Pay: $0.00";
