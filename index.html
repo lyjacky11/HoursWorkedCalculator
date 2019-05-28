@@ -44,7 +44,7 @@
 		<br>
 		</div>
 	</div>
-	<button id="removeButton" class="button" onClick="removeBreak()">Remove Break</button> &nbsp;
+	<button id="removeButton" class="button" onClick="removeBreak()" style="visibility: hidden">Remove Break</button> &nbsp;
 	<button id="addButton" class="button" onClick="addBreak()">Add Break</button>
 	<br></br>
 	<br>
@@ -159,15 +159,20 @@ function addBreak() {
 	var newID = "break" + counter;
 	clone.id = newID;
 	breaks.appendChild(clone);
+	removeButton.style.visibility = "visible";
 }
 
 function removeBreak() {
+	let removeButton = document.getElementById("removeButton");
 	if (counter > 1)
 	{
 		var currentID = "break" + counter;
 		let break_num = document.getElementById(currentID);
 		break_num.remove();
 		counter--;
+		if (counter == 1) {
+			removeButton.style.visibility = "hidden";
+		}
 	}
 }
 
