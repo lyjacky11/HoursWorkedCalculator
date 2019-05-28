@@ -27,7 +27,7 @@
 		cursor: pointer;
 	}
 </style>
-<body>
+<body onload="checkRate()">
 	<h2>Time Sheet Calculator</h2>
 	
 	<h3> Settings </h3>
@@ -88,12 +88,14 @@
 <script type="text/javascript">
 var counter = 1;
 	
-let pay_rate = document.getElementById("pay_rate");
-if (localStorage.getItem("pay_rate") != null) {
-	pay_rate.setAttribute("value", localStorage.getItem("pay_rate"));
-}
-else {
-	pay_rate.setAttribute("value", "14.00");
+function checkRate() {
+	let pay_rate = document.getElementById("pay_rate");
+	if (localStorage.getItem("pay_rate") != null) {
+		pay_rate.setAttribute("value", localStorage.getItem("pay_rate"));
+	}
+	else {
+		pay_rate.setAttribute("value", "14.00");
+	}
 }
 
 function calculateHours() {
