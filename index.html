@@ -136,9 +136,14 @@ function calculateHours() {
 		total_hours = total_hours.toFixed(2);
 		total_amount = total_amount.toFixed(2);
 		
-		hours_worked.innerHTML = "Hours Worked: " + hour_netdiff + "h " + minute_netdiff + "m | " + total_hours + " hours";
-		total_breaks.innerHTML = "Total Breaks: " + hour_bdiff + "h " + minute_bdiff + "m | " + totalb_hours + " hours";
-		gross_pay.innerHTML = "Gross Pay: $" + total_amount;
+		if (total_hours < 0 || totalb_hours < 0) {
+			alert("Invalid shift/break times!\nPlease check the information and try again!");
+		}
+		else {
+			hours_worked.innerHTML = "Hours Worked: " + hour_netdiff + "h " + minute_netdiff + "m | " + total_hours + " hours";
+			total_breaks.innerHTML = "Total Breaks: " + hour_bdiff + "h " + minute_bdiff + "m | " + totalb_hours + " hours";
+			gross_pay.innerHTML = "Gross Pay: $" + total_amount;
+		}
 	}
 }
 
