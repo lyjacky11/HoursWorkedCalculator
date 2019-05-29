@@ -28,6 +28,10 @@
 		padding: 10px 15px;
 		cursor: pointer;
 	}
+	
+	.button:hover {
+		background-color: #438cc3;
+	}
 </style>
 
 <body onload="checkRate()">
@@ -60,8 +64,8 @@
 	<h5><font color="green">Developer Note: Additional breaks<br>functionality is now working correctly!</font></h5>
 	End Shift: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="time" id="end_shift" value="19:00" list="times_list"><br>
 	<br></br>
-	<button class="button" onclick="calculateHours()">Calculate</button> &nbsp;
-	<button class="button" onClick="clearForm()">Clear</button>
+	<button class="button" onClick="clearForm()">Reset Times</button> &nbsp;
+	<button class="button" onclick="calculateHours()">Calculate</button>
 	</form>
 	
 	<datalist id="times_list">
@@ -106,7 +110,7 @@ function checkRate() {
 		pay_rate.setAttribute("value", localStorage.getItem("pay_rate"));
 	}
 	else {
-		pay_rate.setAttribute("value", "14.00");
+		pay_rate.setAttribute("placeholder", "ex. 14.00");
 	}
 }
 
