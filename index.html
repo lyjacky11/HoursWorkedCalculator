@@ -56,7 +56,7 @@
 	<br>
 	</div>
 	<!-- <h6><font color="red"> NOTE: Only first break works, there is no <br> implementation for additional breaks yet! </font></h6> -->
-	<h5><font color="green"> Additional breaks functionality has<br>been implemented successfully! </font></h5>
+	<h5><font color="green">Developer Note: Additional breaks<br>functionality is now working correctly!</font></h5>
 	End Shift: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="time" id="end_shift" value="19:00" list="times_list"><br>
 	<br></br>
 	<button class="button" onclick="calculateHours()">Calculate</button> &nbsp;
@@ -133,9 +133,9 @@ function calculateHours() {
 		var net_start = Number(start_hour) + start_minute/60;
 		var net_end = Number(end_hour) + end_minute/60;
 		var total_shift_hours = net_end - net_start;
+		var totalb_hours = 0;
 		
 		if (start_break1 != "" && end_break1 != "") {
-			var totalb_hours = 0;
 			for (var i = 1; i <= counter; i++) {
 				let start_id = "start_break" + i;
 				let end_id = "end_break" + i;
@@ -151,11 +151,14 @@ function calculateHours() {
 				// Calculate break hours
 				var netb_start = Number(startb_hour) + startb_minute/60;
 				var netb_end = Number(endb_hour) + endb_minute/60;
+				if (netb_end < netb_start) {
+					alert("Invalid break times!\nPlease check the information and try again!");
+					return false;
+				}
 				var sum = netb_end - netb_start;
 				totalb_hours += sum;
 			}
 		}
-		else { var totalb_hours = 0 };
 		
 		// Calculate total hours
 		var total_hours = total_shift_hours - totalb_hours;
@@ -171,14 +174,13 @@ function calculateHours() {
 		total_hours = total_hours.toFixed(2);
 		total_amount = total_amount.toFixed(2);
 		
-		if (total_hours < 0 || totalb_hours < 0) {
+		if (total_hours < 0 || totalb_hours < 0 || net_end < net_start) {
 			alert("Invalid shift/break times!\nPlease check the information and try again!");
+			return false;
 		}
-		else {
-			hours_worked.innerHTML = "Hours Worked: " + hour_netdiff + "h " + minute_netdiff + "m | " + total_hours + " hours";
-			total_breaks.innerHTML = "Total Breaks: " + hour_bdiff + "h " + minute_bdiff + "m | " + totalb_hours + " hours";
-			gross_pay.innerHTML = "Gross Pay: $" + total_amount;
-		}
+		hours_worked.innerHTML = "Hours Worked: " + hour_netdiff + "h " + minute_netdiff + "m | " + total_hours + " hours";
+		total_breaks.innerHTML = "Total Breaks: " + hour_bdiff + "h " + minute_bdiff + "m | " + totalb_hours + " hours";
+		gross_pay.innerHTML = "Gross Pay: $" + total_amount;
 	}
 }
 
