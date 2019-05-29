@@ -151,7 +151,7 @@ function calculateHours() {
 				// Calculate break hours
 				var netb_start = Number(startb_hour) + startb_minute/60;
 				var netb_end = Number(endb_hour) + endb_minute/60;
-				if (netb_end < netb_start) {
+				if (netb_end < netb_start || netb_start < net_start || netb_end > net_end) {
 					alert("Invalid break times!\nPlease check the information and try again!");
 					return false;
 				}
