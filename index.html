@@ -141,22 +141,23 @@ function calculateHours() {
 				let end_id = "end_break" + i;
 				let start_break = document.getElementById(start_id).value;
 				let end_break = document.getElementById(end_id).value;
-				
-				// Break Times
-				var startb_hour = start_break.split(":")[0];
-				var startb_minute = start_break.split(":")[1];
-				var endb_hour = end_break.split(":")[0];
-				var endb_minute = end_break.split(":")[1];
-				
-				// Calculate break hours
-				var netb_start = Number(startb_hour) + startb_minute/60;
-				var netb_end = Number(endb_hour) + endb_minute/60;
-				if (netb_end < netb_start || netb_start < net_start || netb_end > net_end) {
-					alert("Invalid break times!\nPlease check the information and try again!");
-					return false;
+				if (start_break != "" && end_break != "") {
+					// Break Times
+					var startb_hour = start_break.split(":")[0];
+					var startb_minute = start_break.split(":")[1];
+					var endb_hour = end_break.split(":")[0];
+					var endb_minute = end_break.split(":")[1];
+					
+					// Calculate break hours
+					var netb_start = Number(startb_hour) + startb_minute/60;
+					var netb_end = Number(endb_hour) + endb_minute/60;
+					if (netb_end < netb_start || netb_start < net_start || netb_end > net_end) {
+						alert("Invalid break times!\nPlease check the information and try again!");
+						return false;
+					}
+					var sum = netb_end - netb_start;
+					totalb_hours += sum;
 				}
-				var sum = netb_end - netb_start;
-				totalb_hours += sum;
 			}
 		}
 		
