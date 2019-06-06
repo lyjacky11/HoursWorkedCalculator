@@ -1,5 +1,12 @@
 var counter = 1;
-	
+
+function checkDevice() {
+	if (screen.width <= 768) {
+			let times_list = document.getElementById("times_list");
+			times_list.innerHTML = "";
+		}
+	}
+
 function checkRate() {
 	let pay_rate = document.getElementById("pay_rate");
 	if (localStorage.getItem("pay_rate") != null) {
