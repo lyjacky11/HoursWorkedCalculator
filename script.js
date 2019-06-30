@@ -136,3 +136,30 @@ function clearForm() {
 	total_breaks.innerHTML = "Total Breaks: 0h 0m | 0.00 hours";
 	gross_pay.innerHTML = "Gross Pay: $0.00";
 }
+
+document.onkeydown = function (evt) {
+  var keyCode = evt ? (evt.which ? evt.which : evt.keyCode) : event.keyCode;
+  if (keyCode == 13) {
+    // For Enter Key
+    document.getElementById('calculateBtn').click();
+    return false;
+  }
+  else if (keyCode == 27) {
+    // For Escape
+    document.getElementById('resetBtn').click();
+    return false;
+  }
+  else if (keyCode == 187 || keyCode == 107) {
+    // For Equal/Add
+    document.getElementById('addButton').click();
+    return false;
+  }
+  else if (keyCode == 189 || keyCode == 109) {
+    // For Minus/Underscore
+    document.getElementById('removeButton').click();
+    return false;
+  }
+  else {
+    return true;
+  }
+};
