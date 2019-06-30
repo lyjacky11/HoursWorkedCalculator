@@ -7,18 +7,26 @@ function checkDevice() {
 		}
 	}
 
-function checkRate() {
+function checkSettings() {
 	let pay_rate = document.getElementById("pay_rate");
+	let rate_x = document.getElementById("rate_x");
 	if (localStorage.getItem("pay_rate") != null) {
 		pay_rate.setAttribute("value", localStorage.getItem("pay_rate"));
 	}
 	else {
 		pay_rate.setAttribute("placeholder", "ex. 14.00");
 	}
+	if (localStorage.getItem("rate_x") != null) {
+		rate_x.setAttribute("value", localStorage.getItem("rate_x"));
+	}
+	else {
+		rate_x.setAttribute("value", "1.0");
+	}
 }
 
 function calculateHours() {
 	let pay_rate = document.getElementById("pay_rate").value;
+	let rate_x = document.getElementById("rate_x").value;
 	let start_shift = document.getElementById("start_shift").value;
 	let end_shift = document.getElementById("end_shift").value;
 	let hours_worked = document.getElementById("hours_worked");
@@ -27,6 +35,7 @@ function calculateHours() {
 	let results = document.getElementById("results");
 	
 	localStorage.setItem("pay_rate", pay_rate);
+	localStorage.setItem("rate_x", rate_x);
 	
 	if (start_shift != "" && end_shift != "") {
 		
@@ -68,7 +77,7 @@ function calculateHours() {
 		
 		// Calculate total hours
 		var total_hours = total_shift_hours - totalb_hours;
-		var total_amount = pay_rate * total_hours;
+		var total_amount = pay_rate * rate_x * total_hours;
 		
 		var hour_netdiff = Math.floor(total_hours);
 		var minute_netdiff = Math.floor((total_hours % 1) * 60);
