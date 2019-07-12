@@ -3,7 +3,9 @@ var counter = 1;
 function checkDevice() {
 	if (screen.width <= 768) {
 			let times_list = document.getElementById("times_list");
+			let shortcuts = document.getElementById("shortcuts");
 			times_list.innerHTML = "";
+			shortcuts.style.display = "none";
 		}
 	}
 
