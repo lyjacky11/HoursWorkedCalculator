@@ -34,6 +34,8 @@ function calculateHours() {
 	let hours_worked = document.getElementById("hours_worked");
 	let total_breaks = document.getElementById("total_breaks");
 	let gross_pay = document.getElementById("gross_pay");
+	let addToCal = document.getElementById("addToCal");
+	let googleSignIn = document.getElementById('google_signin');
 	let results = document.getElementById("results");
 	
 	localStorage.setItem("pay_rate", pay_rate);
@@ -99,6 +101,10 @@ function calculateHours() {
 		total_breaks.innerHTML = "Total Breaks: " + hour_bdiff + "h " + minute_bdiff + "m | " + totalb_hours + " hours";
 		gross_pay.innerHTML = "Gross Pay: $" + total_amount;
 		results.style.display = "block";
+		if (googleSignIn.style.display == 'none') {
+			addToCal.style.visibility = "visible";
+		}
+		sessionStorage.setItem("counter", counter);
 	}
 }
 
@@ -143,9 +149,21 @@ function clearForm() {
 	
 	shift_times.reset();
 	while (counter != 1) { removeBreak(); }
+	sessionStorage.setItem("counter", 1);
+	addToCal.style.visibility = "hidden";
 	hours_worked.innerHTML = "Hours Worked: 0h 0m | 0.00 hours";
 	total_breaks.innerHTML = "Total Breaks: 0h 0m | 0.00 hours";
 	gross_pay.innerHTML = "Gross Pay: $0.00";
+}
+
+function convertTime(time24) {
+  var ts = time24;
+  var H = +ts.substr(0, 2);
+  var h = (H % 12) || 12;
+  h = (h < 10)?("0"+h):h;  // leading 0 at the left for 1 digit hours
+  var ampm = H < 12 ? " am" : " pm";
+  ts = h + ts.substr(2, 3) + ampm;
+  return ts;
 }
 
 document.onkeydown = function (evt) {
@@ -173,4 +191,4 @@ document.onkeydown = function (evt) {
   else {
     return true;
   }
-};
+}

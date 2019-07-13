@@ -12,6 +12,7 @@
 <body onload="checkDevice(); checkSettings();">
 	<div id="header">
 	<h2>Time Sheet Calculator</h2>
+	<h5>Applet written by Jacky Ly.<br><a href="https://github.com/lyjacky11">GitHub</a> | <a href="https://lyjacky11.me/">https://lyjacky11.me/</a></h5>
 	<h3> Settings </h3>
 	Pay Rate: &nbsp;&nbsp; $ &nbsp;&nbsp;<input type="number" id="pay_rate" min="10.00" max="100.00" step="0.01" style="width: 3.75em"/>
 	<br></br>
@@ -75,11 +76,22 @@
 	<p id="gross_pay">Gross Pay: $0.00</p>
 	<br>
 	</div>
+	<button id="addToCal" class="button" style="visibility: hidden" onclick="makeApiCall()"><img src="google.png"></img> &nbsp; Add To Calendar</button>
+	<br></br>
+	<div id="google_signin" style="display:none">
+	<img id="authorize-button" class="button" style="background-color: white" src="google-signin.png"></img>
+	<h6>By signing in with Google, you<br>agree to the use of Calendar API.</br><a href="https://developers.google.com/calendar/">Learn more</a>&nbsp; | &nbsp;<a href="https://developers.google.com/calendar/v3/reference/">API Docs</a></h6>
+	</div>
+	<div class="panel panel-danger" id="result-panel">
+			<div class="panel-body">
+				<div id="event-response"></div>
+			</div>
+		</div>
 	
-	<h5>Applet written by Jacky Ly.<br><a href="https://github.com/lyjacky11">GitHub</a> | <a href="https://lyjacky11.me/">https://lyjacky11.me/</a></h5>
-	
-	<a href='https://go.lyjacky11.me/timesheet' target="_blank"><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="160px"/></a>
-	<h6 align="center">Google Play and the Google Play<br>logo are trademarks of Google LLC.</h6>
+	<h6 align="center"><a href='https://go.lyjacky11.me/timesheet' target="_blank"><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="160px"/></a><br>
+	Google Play and the Google Play<br>logo are trademarks of Google LLC.</h6>
 </body>
 <script src="script.js"></script>
+<script src="calendar-api.js"></script>
+<script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
 </html>
