@@ -10,5 +10,3 @@ This applet calculates the amount of hours worked given the start and end time o
 ### Now available on Google Play!
 
 <a href='https://go.lyjacky11.me/timesheet' target="_blank"><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="175px"/></a>
-
-![Screenshot](screenshot-image.png)
