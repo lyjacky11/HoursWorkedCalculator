@@ -44,6 +44,12 @@ function handleAuthClick(event) {
 // function load the calendar api and make the api call
 function makeApiCall() {
 	gapi.client.load('calendar', 'v3', function() {					// load the calendar api (version 3)
+		var title = prompt("Enter an event title:", "Work");
+		while (title == "") {
+			alert("Please enter a title for the event!");
+			title = prompt("Enter an event title:", "Work");
+		}
+		if (title != null) {
 		var now = new Date();
 		var start_shift = document.getElementById("start_shift").value;
 		var end_shift = document.getElementById("end_shift").value;
@@ -79,7 +85,7 @@ function makeApiCall() {
 
 		// setup event details
 		var resource = {
-			"summary": "Added from Time Sheets",
+			"summary": title,
 			"description": hours_worked + "\n" + total_breaks + "\nShift Paid? N/A\n\n" + time_in + "\n" + breaksString + time_out,
 			"reminders": {
 				"useDefault": false,
@@ -100,12 +106,13 @@ function makeApiCall() {
 		// handle the response from our api call
 		request.execute(function(resp) {
 			if(resp.status=='confirmed') {
-				document.getElementById('event-response').innerHTML = "Event has been added successfully.<br>View it on <a href='" + resp.htmlLink + "' target='_blank'>Google Calendar</a>";
+				document.getElementById('event-response').innerHTML = "'" + title + "' has been added successfully!<br>View it on <a href='" + resp.htmlLink + "' target='_blank'>Google Calendar</a>.";
 				console.log("Added event to calendar.");
 			} else {
 				alert("Unfortunately, an error has occurred.<br>Please check the console for more details.");
 			}
 			console.log(resp);
 		});
+		}
 	});
 }
