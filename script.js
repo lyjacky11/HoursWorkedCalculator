@@ -16,7 +16,7 @@ function checkSettings() {
 		pay_rate.setAttribute("value", localStorage.getItem("pay_rate"));
 	}
 	else {
-		pay_rate.setAttribute("placeholder", "ex. 14.00");
+		pay_rate.setAttribute("placeholder", "14.00");
 	}
 	if (localStorage.getItem("rate_x") != null) {
 		rate_x.setAttribute("value", localStorage.getItem("rate_x"));
