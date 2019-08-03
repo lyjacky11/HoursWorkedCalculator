@@ -12,14 +12,16 @@
 <body onload="checkDevice(); checkSettings();">
 	<div id="header">
 	<h2>Time Sheet Calculator</h2>
+	<img alt="Logo" src="calculator.ico" width="75px" style="border-radius: 15px"/>
 	<h5>Applet written by <a href="https://bio.lyjacky11.me/">Jacky Ly</a>.<br><a href="https://github.com/lyjacky11">GitHub</a> | <a href="https://lyjacky11.me/">Website</a></h5>
+	</div>
+	<div id="main">
 	<h3> Settings </h3>
 	Pay Rate: &nbsp;&nbsp; $ &nbsp;&nbsp;<input type="number" id="pay_rate" min="10.00" max="100.00" step="0.01" style="width: 3.75em"/>
 	<br></br>
 	Rate Multiplier: &nbsp;&nbsp;<input type="number" id="rate_x" value="1.0" min="1.00" max="10.00" step="0.1" style="width: 2.5em"/> x
 	<br></br>
-	</div>
-	
+
 	<form id="shift_times" onsubmit="return false">
 	<h3> Shift Times </h3>
 	Start Shift: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="time" id="start_shift" value="07:00" list="times_list"><br>
@@ -87,9 +89,11 @@
 				<div id="event-response"></div>
 			</div>
 		</div>
-	
+	</div>
+	<div id="footer">
 	<h6 align="center"><a href='https://go.lyjacky11.me/timesheet' target="_blank"><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="160px"/></a><br>
 	Google Play and the Google Play<br>logo are trademarks of Google LLC.</h6>
+	</div>
 </body>
 <script src="script.js"></script>
 <script src="calendar-api.js"></script>

@@ -5,19 +5,29 @@ html, body {
 	scroll-behavior: smooth;
 	background-image: url("background.png");
 	}
+
+#header, #main, #footer {
+	height: auto;
+	width: 325px;
+	margin: 10px auto;
+	background: white;
+	padding: 1px;
+	box-shadow: 0 0 10px rgba(0,0,0,.1);
+    border-radius: 17px
+}
 	
-	.button {
-		border-radius: 8px;
-		border: none;
-		background-color: #56A5E1;
-		color: white;
-		font-family: Montserrat;
-		font-size: 13px;
-		text-align: center;
-		padding: 10px 15px;
-		cursor: pointer;
-	}
+.button {
+	border-radius: 8px;
+	border: none;
+	background-color: #56A5E1;
+	color: white;
+	font-family: Montserrat;
+	font-size: 13px;
+	text-align: center;
+	padding: 10px 15px;
+	cursor: pointer;
+}
 	
-	.button:hover {
-		background-color: #438cc3;
-	}
+.button:hover {
+	background-color: #438cc3;
+}
