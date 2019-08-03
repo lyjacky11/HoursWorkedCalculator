@@ -15,6 +15,18 @@ html, body {
 	box-shadow: 0 0 10px rgba(0,0,0,.1);
     border-radius: 17px
 }
+
+input {
+	border: 1px solid #56A5E1;
+	border-radius: 5px;
+	padding: 1px;
+	margin: auto;
+	color: blue;
+}
+
+input:focus {
+	border: 2px solid #438CC3;
+}
 	
 .button {
 	border-radius: 8px;
@@ -29,5 +41,5 @@ html, body {
 }
 	
 .button:hover {
-	background-color: #438cc3;
+	background-color: #438CC3;
 }
