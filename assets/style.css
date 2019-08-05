@@ -3,7 +3,7 @@ html, body {
 	font-size:17px;
 	text-align: center;
 	scroll-behavior: smooth;
-	background-image: url("background.png");
+	background-image: url("img/background.png");
 	background-attachment: fixed;
 }
 
