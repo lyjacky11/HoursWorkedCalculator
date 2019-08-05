@@ -5,7 +5,7 @@
 [![Uptime Robot ratio (30 days)](https://img.shields.io/uptimerobot/ratio/m780474906-2ca86ae1fe508c0d19bab0ff.svg?style=popout-square&label=30%20Days%20Uptime)](https://status.lyjacky11.me/)
 [![Github last commit date](https://img.shields.io/github/last-commit/lyjacky11/TimeSheetCalculator.svg?style=popout-square&label=Updated&maxAge=600)](https://github.com/lyjacky11/TimeSheetCalculator/commits)  
 
-This applet calculates the amount of hours worked given the start and end time of the shifts and breaks if any.
+This app calculates the amount of hours worked based on the start and end time of the shift and any break times.
 
 ### Now available on Google Play!
 
