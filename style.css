@@ -5,7 +5,22 @@ html, body {
 	scroll-behavior: smooth;
 	background-image: url("background.png");
 	background-attachment: fixed;
-	}
+}
+
+a {
+  color: #56A5E1;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #438CC3;
+}
+
+/* Hover Popup */
+.popup:hover {
+	transform: scale(1.05);
+	transition: 0.25s
+}
 
 #header, #main, #footer {
 	height: auto;

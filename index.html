@@ -12,7 +12,7 @@
 <body onload="checkDevice(); checkSettings();">
 	<div id="header">
 	<h2>Time Sheet Calculator</h2>
-	<img alt="Logo" src="calculator.ico" width="75px" style="border-radius: 15px"/>
+	<a href="index.html"><img alt="Logo" class="popup" src="calculator.ico" width="75px" style="border-radius: 15px"/></a>
 	<h5>Applet written by <a href="https://bio.lyjacky11.me/">Jacky Ly</a>.<br><a href="https://github.com/lyjacky11">GitHub</a> | <a href="https://lyjacky11.me/">Website</a></h5>
 	</div>
 	<div id="main">
@@ -36,16 +36,16 @@
 	</div>
 	
 	<div id="break_buttons">
-	<button id="removeButton" class="button" onClick="removeBreak()" style="visibility: hidden">Remove Break</button> &nbsp;
-	<button id="addButton" class="button" onClick="addBreak()" >Add Break</button>
+	<button id="removeButton" class="button popup" onClick="removeBreak()" style="visibility: hidden">Remove Break</button> &nbsp;
+	<button id="addButton" class="button popup" onClick="addBreak()" >Add Break</button>
 	<br>
 	</div>
 	<!-- <h6><font color="red"> NOTE: Only first break works, there is no <br> implementation for additional breaks yet! </font></h6> -->
 	<!-- <h5><font color="green">Developer Note: Additional breaks<br>functionality is now working correctly!</font></h5> -->
 	</br>
 	End Shift: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="time" id="end_shift" value="19:00" list="times_list"><br></br>
-	<button id="resetBtn" class="button" onClick="clearForm()">Reset Times</button> &nbsp;
-	<button id="calculateBtn" class="button" onclick="calculateHours()">Calculate</button>
+	<button id="resetBtn" class="button popup" onClick="clearForm()">Reset Times</button> &nbsp;
+	<button id="calculateBtn" class="button popup" onclick="calculateHours()">Calculate</button>
 	</form>
 	
 	<datalist id="times_list">
@@ -77,10 +77,10 @@
 	<p id="gross_pay">Gross Pay: $0.00</p>
 	<br>
 	</div>
-	<button id="addToCal" class="button" style="visibility: hidden" onclick="makeApiCall()"><img src="google.png"></img> &nbsp; Add To Calendar</button>
+	<button id="addToCal" class="button popup" style="visibility: hidden" onclick="makeApiCall()"><img src="google.png"></img> &nbsp; Add To Calendar</button>
 	<br></br>
 	<div id="google_signin" style="display:none">
-	<img id="authorize-button" class="button" style="background-color: white" src="google-signin.png"></img>
+	<img id="authorize-button" class="button popup" style="background-color: white" src="google-signin.png"></img>
 	<h6>By signing in with Google, you<br>agree to the use of Calendar API.</br><a href="https://developers.google.com/calendar/">Learn more</a>&nbsp; | &nbsp;<a href="https://developers.google.com/calendar/v3/reference/">API Docs</a></h6>
 	</div>
 	<div class="panel panel-danger" id="result-panel">
@@ -91,7 +91,7 @@
 	</div>
 	<div id="footer">
 	<h5 id="shortcuts"><font color="blue">Shortcut Keys:<br>ESC --> Reset Times</br>Plus (+) --> Add Break<br>Minus (-) --> Remove Break</br>Enter --> Calculate</font></h5>
-	<h6 align="center"><a href='https://go.lyjacky11.me/timesheet' target="_blank"><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="160px"/></a><br>
+	<h6 align="center"><a href='https://go.lyjacky11.me/timesheet' target="_blank"><img class="popup" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="160px"/></a><br>
 	Google Play and the Google Play<br>logo are trademarks of Google LLC.</h6>
 	</div>
 </body>
