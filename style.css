@@ -4,16 +4,18 @@ html, body {
 	text-align: center;
 	scroll-behavior: smooth;
 	background-image: url("background.png");
+	background-attachment: fixed;
 	}
 
 #header, #main, #footer {
 	height: auto;
-	width: 325px;
+	width: 625px;
 	margin: 10px auto;
 	background: white;
 	padding: 1px;
 	box-shadow: 0 0 10px rgba(0,0,0,.1);
-    border-radius: 17px
+    border-radius: 17px;
+	transition: ease all 0.25s;
 }
 
 input {
@@ -41,4 +43,10 @@ input:focus {
 	
 .button:hover {
 	background-color: #438CC3;
+}
+
+@media screen and (max-width: 768px) {
+	#header, #main, #footer {
+		width: 350px;
+	}
 }
