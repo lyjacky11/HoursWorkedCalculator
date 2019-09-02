@@ -68,12 +68,14 @@ function makeApiCall() {
 			var breaks = new Array();
 			var counter = sessionStorage.getItem("counter");
 			var breaksString = "";
+			var total_breaks = "";
 			for (var i = 1; i <= counter; i++) {
 				var start_id = "start_break" + i;
 				var end_id = "end_break" + i;
 				var start_break = document.getElementById(start_id).value;
 				var end_break = document.getElementById(end_id).value;
 				if (start_break != "" && end_break != "") {
+					total_breaks = "\n<b>" + document.getElementById("total_breaks").innerHTML + "</b>";
 					breaks[i-1] = "<em>On Break: " + convertTime(start_break) + "</em>\n";
 					breaks[i] = "<em>Off Break: " + convertTime(end_break) + "</em>\n";
 					breaksString += breaks[i-1];
@@ -82,14 +84,13 @@ function makeApiCall() {
 			}
 			
 			var hours_worked = "<b>" + document.getElementById("hours_worked").innerHTML + "</b>";
-			var total_breaks = "<b>" + document.getElementById("total_breaks").innerHTML + "</b>";
 			var time_in = "<em>Time In: " + convertTime(start_shift) + "</em>";
 			var time_out = "<em>Time Out: " + convertTime(end_shift) + "</em>";
 			
 			// setup event details
 			var resource = {
 				"summary": title,
-				"description": hours_worked + "\n" + total_breaks + "\nShift Paid? N/A\n\n" + time_in + "\n" + breaksString + time_out,
+				"description": hours_worked + total_breaks + "\nShift Paid? N/A\n\n" + time_in + "\n" + breaksString + time_out,
 				"reminders": {
 					"useDefault": false,
 				},
