@@ -101,11 +101,9 @@ function calculateHours() {
 		total_breaks.innerHTML = "Total Breaks: " + hour_bdiff + "h " + minute_bdiff + "m | " + totalb_hours + " hours";
 		gross_pay.innerHTML = "Gross Pay: $" + total_amount;
 		results.style.display = "block";
-		/*
-		if (googleSignIn.style.display == 'none') {
+		//if (googleSignIn.style.display == 'none') {
 			addToCal.style.visibility = "visible";
-		}
-		*/
+		//}
 		sessionStorage.setItem("counter", counter);
 	}
 }
