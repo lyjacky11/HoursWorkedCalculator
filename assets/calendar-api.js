@@ -113,7 +113,7 @@ function makeApiCall() {
 					document.getElementById('event-response').innerHTML = "'" + title + "' has been added successfully!<br>View it on <a href='" + resp.htmlLink + "' target='_blank'>Google Calendar</a>.";
 					console.log("Added event to calendar.");
 				} else {
-					alert("ERROR: Unable to add event. Please sign in again!");
+					alert("Unfortunately, an error has occurred.<br>Please check the console for more details.");
 				}
 				console.log(resp);
 			});
