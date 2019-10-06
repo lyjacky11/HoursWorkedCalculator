@@ -84,10 +84,10 @@ function calculateHours() {
 		var total_amount = pay_rate * rate_x * total_hours;
 		
 		var hour_netdiff = Math.floor(total_hours);
-		var minute_netdiff = Math.floor((total_hours % 1) * 60);
+		var minute_netdiff = Math.round((total_hours % 1) * 60);
 		
 		var hour_bdiff = Math.floor(totalb_hours);
-		var minute_bdiff = Math.floor((totalb_hours % 1) * 60);
+		var minute_bdiff = Math.round((totalb_hours % 1) * 60);
 		
 		totalb_hours = totalb_hours.toFixed(2);
 		total_hours = total_hours.toFixed(2);
