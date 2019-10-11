@@ -1,67 +1,58 @@
 html, body {
-	font-family: Roboto, sans-serif;
-	font-size:17px;
-	text-align: center;
-	scroll-behavior: smooth;
-	background-image: url("img/background.png");
-	background-attachment: fixed;
+     font-family: Roboto, sans-serif;
+     font-size:17px;
+     text-align: center;
+     scroll-behavior: smooth;
+     background-image: url("img/background.png");
+     background-attachment: fixed;
 }
-
-a {
-  color: #56A5E1;
-  text-decoration: none;
+ a {
+     color: #56A5E1;
+     text-decoration: none;
 }
-
-a:hover {
-  color: #438CC3;
+ a:hover {
+     color: #438CC3;
 }
-
 /* Hover Popup */
-.popup:hover {
-	transform: scale(1.05);
-	transition: 0.25s
+ .popup:hover {
+     transform: scale(1.05);
+     transition: 0.25s 
 }
-
-#header, #main, #footer {
-	height: auto;
-	width: 625px;
-	margin: 10px auto;
-	background: white;
-	padding: 1px;
-	box-shadow: 0 0 10px rgba(0,0,0,.1);
-    border-radius: 17px;
-	transition: ease all 0.25s;
+ #header, #main, #footer {
+     height: auto;
+     width: 625px;
+     margin: 10px auto;
+     background: white;
+     padding: 1px;
+     box-shadow: 0 0 10px rgba(0,0,0,.1);
+     border-radius: 17px;
+     transition: ease all 0.25s;
 }
-
-input {
-	border: 1px solid #56A5E1;
-	border-radius: 5px;
-	padding: 1px;
-	margin: auto;
+ input {
+     border: 1px solid #56A5E1;
+     border-radius: 5px;
+     padding: 1px;
+     margin: auto;
 }
-
-input:focus {
-	border: 2px solid #438CC3;
+ input:focus {
+     border: 2px solid #438CC3;
 }
-	
-.button {
-	border-radius: 8px;
-	border: none;
-	background-color: #56A5E1;
-	color: white;
-	font-family: 'Open Sans', sans-serif;
-	font-size: 14px;
-	text-align: center;
-	padding: 10px 15px;
-	cursor: pointer;
+ .button {
+     border-radius: 8px;
+     border: none;
+     background-color: #56A5E1;
+     color: white;
+     font-family: 'Open Sans', sans-serif;
+     font-size: 14px;
+     text-align: center;
+     padding: 10px 15px;
+     cursor: pointer;
 }
-	
-.button:hover {
-	background-color: #438CC3;
+ .button:hover {
+     background-color: #438CC3;
 }
-
-@media screen and (max-width: 768px) {
-	#header, #main, #footer {
-		width: 350px;
-	}
+ @media screen and (max-width: 768px) {
+     #header, #main, #footer {
+         width: 350px;
+    }
 }
