@@ -13,7 +13,6 @@ html, body {
  a:hover {
      color: #438CC3;
 }
-/* Hover Popup */
  .popup:hover {
      transform: scale(1.05);
      transition: 0.25s 
