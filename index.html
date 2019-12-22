@@ -12,7 +12,7 @@
       <div id="header">
          <h2>Time Sheet Calculator</h2>
          <img alt="Logo" class="popup" src="assets/img/calculator.ico" width="75" style="border-radius: 15px; cursor: pointer;" onclick="window.location.reload()"/>
-         <h5>App written by: Jacky Ly<br><a href="https://github.com/lyjacky11">GitHub</a> -- <a href="https://JackyLy.ca/">Website</a></h5>
+         <h5>App written by: Jacky Ly<br><a href="https://github.com/lyjacky11" target="_blank">GitHub</a> -- <a href="https://JackyLy.ca/" target="_blank">Website</a></h5>
       </div>
       <div id="main">
          <h3> Settings </h3>
@@ -22,7 +22,7 @@
          <br><br>
          <form id="shift_times" onsubmit="return false">
             <h3> Shift Times </h3>
-            Start Shift: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="time" id="start_shift" value="07:00" list="times_list"><br>
+            Start Shift: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="time" id="start_shift" value="08:00" list="times_list"><br>
             <div id="breaks">
                <h4> Breaks </h4>
                <div id ="break1">
@@ -39,7 +39,7 @@
             <!-- <h6><font color="red"> NOTE: Only first break works, there is no <br> implementation for additional breaks yet! </font></h6> -->
             <!-- <h5><font color="green">Developer Note: Additional breaks<br>functionality is now working correctly!</font></h5> -->
             <br>
-            End Shift: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="time" id="end_shift" value="19:00" list="times_list"><br><br>
+            End Shift: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="time" id="end_shift" value="20:00" list="times_list"><br><br>
             <button id="resetBtn" class="button popup" onClick="clearForm()">Reset Times</button> &nbsp;
             <button id="calculateBtn" class="button popup" onclick="calculateHours()">Calculate</button>
          </form>
@@ -84,7 +84,7 @@
          </div>
       </div>
       <div id="footer">
-      <h5 id="shortcuts" style="color: blue">Shortcut Keys:<br>ESC --> Reset Times<br>Plus (+) --> Add Break<br>Minus (-) --> Remove Break<br>Enter --> Calculate</h5>
+      <h5 id="shortcuts" style="color: blue; text-align: center;">Shortcuts:<br><div style="display: inline-block; text-align: left; margin-left: 2%;">ESC: &emsp;&emsp;&emsp;&nbsp; Reset Times<br>Plus (+): &emsp;&ensp;&nbsp; Add Break<br>Minus (-): &emsp; Remove Break<br>Enter (&#8617;): &emsp; Calculate</div></h5>
       <h6 style="text-align: center"><a href='https://go.jackyly.ca/timesheet' target="_blank"><img class="popup" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="160"/></a><br>
       Google Play and the Google Play<br>logo are trademarks of Google LLC.</h6>
       </div>
