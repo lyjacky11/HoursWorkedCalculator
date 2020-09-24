@@ -32,10 +32,10 @@ function calculateHours() {
 	var hours_worked = document.getElementById("hours_worked");
 	var total_breaks = document.getElementById("total_breaks");
 	var gross_pay = document.getElementById("gross_pay");
-	var addToCal = document.getElementById("addToCal");
-	var googleSignIn = document.getElementById('google_signin');
+	//var addToCal = document.getElementById("addToCal");
+	//var googleSignIn = document.getElementById('google_signin');
 	var results = document.getElementById("results");
-
+	
 	localStorage.setItem("pay_rate", pay_rate);
 	localStorage.setItem("rate_x", rate_x);
 
@@ -99,12 +99,85 @@ function calculateHours() {
 		total_breaks.innerHTML = "Total Breaks: " + hour_bdiff + "h " + minute_bdiff + "m | " + totalb_hours + " hours";
 		gross_pay.innerHTML = "Gross Pay: $" + total_amount;
 		results.style.display = "block";
+		/*
 		if (googleSignIn.style.display == 'none') {
 			addToCal.style.visibility = "visible";
 		}
+		*/
 		sessionStorage.setItem("counter", counter);
+		updateCalButton();
 	}
 }
+
+function updateCalButton() {
+	var calButton = document.getElementsByClassName("addeventatc")[0];
+	var eventTitle = calButton.getElementsByClassName("title")[0];
+	var description = calButton.getElementsByClassName("description")[0];
+	var startTime = calButton.getElementsByClassName("start")[0];
+	var endTime = calButton.getElementsByClassName("end")[0];
+	var timeZone = calButton.getElementsByClassName("timezone")[0];
+	var reminder = calButton.getElementsByClassName("alarm_reminder")[0];
+	
+	var now = new Date();
+	var start_shift = document.getElementById("start_shift").value;
+	var end_shift = document.getElementById("end_shift").value;
+	
+	var start_hour = start_shift.split(":")[0];
+	var start_minute = start_shift.split(":")[1];
+	var end_hour = end_shift.split(":")[0];
+	var end_minute = end_shift.split(":")[1];
+	
+	var startDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), start_hour, start_minute);
+	startDate = startDate.toISOString();
+	var endDate = new Date(now.getFullYear(), now.getMonth(), now.getDate(), end_hour, end_minute);
+	endDate = endDate.toISOString();
+	
+	var breaks = new Array();
+	var counter = sessionStorage.getItem("counter");
+	var breaksString = "";
+	var total_breaks = "";
+	for (var i = 1; i <= counter; i++) {
+		var start_id = "start_break" + i;
+		var end_id = "end_break" + i;
+		var start_break = document.getElementById(start_id).value;
+		var end_break = document.getElementById(end_id).value;
+		if (start_break != "" && end_break != "") {
+			total_breaks = "\n<b>" + document.getElementById("total_breaks").innerHTML + "</b>";
+			breaks[i-1] = "<em>On Break: " + convertTime(start_break) + "</em>\n";
+			breaks[i] = "<em>Off Break: " + convertTime(end_break) + "</em>\n";
+			breaksString += breaks[i-1];
+			breaksString += breaks[i];
+		}
+	}
+	
+	var hours_worked = "<b>" + document.getElementById("hours_worked").innerHTML + "</b>";
+	var time_in = "<em>Time In: " + convertTime(start_shift) + "</em>";
+	var time_out = "<em>Time Out: " + convertTime(end_shift) + "</em>";
+	
+	eventTitle.innerText = "Event Name";
+	description.innerText = hours_worked + total_breaks + "<br>Shift Paid? N/A<br><br>" + time_in + "<br>" + breaksString + time_out;
+	startTime.innerText = start_shift;
+	endTime.innerText = end_shift;
+	timeZone.innerText = "America/Toronto";
+	reminder.innerText = "0";
+}
+
+/*
+function setCalTitle() {
+	var eventTitle = calButton.getElementsByClassName("title")[0];
+	var title = localStorage.getItem("event_title");
+	if (title == undefined) {
+		title = "Event Name";
+	}
+	title = prompt("Event Title:", title);
+	while (title == "") {
+		alert("Please enter a title for the event!");
+		title = prompt("Event Title:", title);
+	}
+	localStorage.setItem("event_title", title);
+	eventTitle.innerText = title;
+}
+*/
 
 function addBreak() {
 	var breaks = document.getElementById("breaks");
@@ -144,14 +217,14 @@ function clearForm() {
 	var total_breaks = document.getElementById("total_breaks");
 	var gross_pay = document.getElementById("gross_pay");
 	var shift_times = document.getElementById("shift_times");
-	var addToCal = document.getElementById("addToCal");
+	//var addToCal = document.getElementById("addToCal");
 
 	shift_times.reset();
 	while (counter != 1) {
 		removeBreak();
 	}
 	sessionStorage.setItem("counter", 1);
-	addToCal.style.visibility = "hidden";
+	//addToCal.style.visibility = "hidden";
 	hours_worked.innerHTML = "Hours Worked: 0h 0m | 0.00 hours";
 	total_breaks.innerHTML = "Total Breaks: 0h 0m | 0.00 hours";
 	gross_pay.innerHTML = "Gross Pay: $0.00";

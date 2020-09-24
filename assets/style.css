@@ -50,6 +50,21 @@ html, body {
  .button:hover {
      background-color: #438CC3;
 }
+
+.addeventatc {
+	border: solid 2px !important;
+	border-color: #56A5E1 !important;
+	visibility: hidden;
+}
+
+.addeventatc_dropdown {
+	padding: 6px 0px !important;
+}
+
+.addeventatc_dropdown .copyx {
+	display: none !important;
+}
+
  @media screen and (max-width: 768px) {
      #header, #main, #footer {
          width: 350px;

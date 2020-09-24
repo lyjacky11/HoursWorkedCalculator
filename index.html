@@ -7,7 +7,30 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans%7CRoboto:300&display=swap"/>
       <link rel="icon" href="assets/img/calculator.ico" type="image/x-icon"/>
       <link rel="stylesheet" type="text/css" href="assets/style.css"/>
+	  <script async type="text/javascript" src="assets/script.js"></script>
+	  <!--
+	  <script async src="assets/calendar-api.js"></script>
+	  <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+	  -->
+	  
+	  <!-- AddEvent Script -->
+	  <script async defer type="text/javascript" src="https://addevent.com/libs/atc/1.6.1/atc.min.js"></script>
+	  
+	  <!-- AddEvent Settings -->
+	  <script type="text/javascript">
+	  window.addeventasync = function(){
+	    addeventatc.settings({
+	  		appleical  : {show:false, text:"Apple Calendar"},
+			google     : {show:true, text:"Google"},
+			office365  : {show:true, text:"Office 365"},
+			outlook    : {show:false, text:"Outlook"},
+			outlookcom : {show:true, text:"Outlook.com"},
+			yahoo      : {show:true, text:"Yahoo"}
+		});
+	  };
+	  </script>
    </head>
+   
    <body onload="checkDevice(); checkSettings();">
       <div id="header">
          <h2>Time Sheet Calculator</h2>
@@ -36,13 +59,12 @@
                <button id="addButton" class="button popup" onClick="addBreak()" >Add Break</button>
                <br>
             </div>
-            <!-- <h6><font color="red"> NOTE: Only first break works, there is no <br> implementation for additional breaks yet! </font></h6> -->
-            <!-- <h5><font color="green">Developer Note: Additional breaks<br>functionality is now working correctly!</font></h5> -->
             <br>
             End Shift: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="time" id="end_shift" value="20:00" list="times_list"><br><br>
             <button id="resetBtn" class="button popup" onClick="clearForm()">Reset Times</button> &nbsp;
             <button id="calculateBtn" class="button popup" onclick="calculateHours()">Calculate</button>
          </form>
+		 
          <datalist id="times_list">
             <option value="06:00">
             <option value="07:00">
@@ -63,33 +85,47 @@
             <option value="22:00">
             <option value="23:00">
          </datalist>
+		 
+		 <br>
          <div id="results" style="display: none">
-         <br><br>
-         <h3> Results </h3>
-         <p id="hours_worked">Hours Worked: 0h 0m | 0.00 hours</p>
-         <p id="total_breaks">Total Breaks: 0h 0m | 0.00 hours</p>
-         <p id="gross_pay">Gross Pay: $0.00</p>
-         <br>
+			 <h3> Results </h3>
+			 <p id="hours_worked">Hours Worked: 0h 0m | 0.00 hours</p>
+			 <p id="total_breaks">Total Breaks: 0h 0m | 0.00 hours</p>
+			 <p id="gross_pay">Gross Pay: $0.00</p>
+			 
+			 <!-- Add to Calendar -->
+			 <div title="Add To Calendar" class="addeventatc" data-google-api="true">
+				 Add To Calendar
+				 <span class="title"></span>
+				 <span class="description"></span>
+				 <span class="start"></span>
+				 <span class="end"></span>
+				 <span class="timezone"></span>
+				 <span class="alarm_reminder"></span>
+				 
+			 </div>
          </div>
+		 <br>
+		 <!--
          <button id="addToCal" class="button popup" style="visibility: hidden" onclick="makeApiCall()"><img src="assets/img/google.png" alt="Google"/> &nbsp; Add To Calendar</button>
          <br><br>
          <div id="google_signin" style="display:none">
-         <img id="authorize-button" class="button popup" style="background-color: white" src="assets/img/google-signin.png" alt="Google Sign In"/>
-         <h6>By signing in with Google, you<br>agree to the use of Calendar API.<br><a href="https://developers.google.com/calendar/">Learn more</a>&nbsp; | &nbsp;<a href="https://developers.google.com/calendar/v3/reference/">API Docs</a></h6>
+			<img id="authorize-button" class="button popup" style="background-color: white" src="assets/img/google-signin.png" alt="Google Sign In"/>
+			<h6>By signing in with Google, you<br>agree to the use of Calendar API.<br><a href="https://developers.google.com/calendar/">Learn more</a>&nbsp; | &nbsp;<a href="https://developers.google.com/calendar/v3/reference/">API Docs</a></h6>
          </div>
+		 
          <div class="panel panel-danger" id="result-panel">
-         <div class="panel-body">
-         <div id="event-response"></div>
+			<div class="panel-body">
+				<div id="event-response"></div>
+			</div>
          </div>
-         </div>
+		 -->
       </div>
       <div id="footer">
-      <h5 id="shortcuts" style="color: blue; text-align: center;">Shortcuts:<br><div style="display: inline-block; text-align: left; margin-left: 2%;">ESC: &emsp;&emsp;&emsp;&nbsp; Reset Times<br>Plus (+): &emsp;&ensp;&nbsp; Add Break<br>Minus (-): &emsp; Remove Break<br>Enter (&#8617;): &emsp; Calculate</div></h5>
-      <h6 style="text-align: center"><a href='https://go.jackyly.ca/timesheet' target="_blank"><img class="popup" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="160"/></a><br>
-      Google Play and the Google Play<br>logo are trademarks of Google LLC.<br><br>© Copyright 2019-<script>document.write(new Date().getFullYear())</script>, Jacky Ly.</h6>
+		<br />
+		  <h5 id="shortcuts" style="color: dodgerblue; text-align: center;">Shortcuts:<br><div style="display: inline-block; text-align: left; margin-left: 2%;">ESC: &emsp;&emsp;&emsp;&nbsp; Reset Times<br>Plus (+): &emsp;&ensp;&nbsp; Add Break<br>Minus (-): &emsp; Remove Break<br>Enter (&#8617;): &emsp; Calculate</div></h5>
+		  <h6 style="text-align: center"><a href='https://go.jackyly.ca/timesheet' target="_blank"><img class="popup" alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' width="160"/></a><br>
+		  Google Play and the Google Play<br>logo are trademarks of Google LLC.<br><br>© Copyright 2019-<script>document.write(new Date().getFullYear())</script>, Jacky Ly.</h6>
       </div>
-      <script async src="assets/script.js"></script>
-      <script async src="assets/calendar-api.js"></script>
-      <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
    </body>
 </html>
